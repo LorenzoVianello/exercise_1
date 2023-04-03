@@ -8,6 +8,7 @@ class ItemPage extends GetResponsiveView {
 
   ItemPage({required this.item});
 
+  //Return Item ItemPage
   Widget phone() {
     return Scaffold(
       appBar: AppBar(
@@ -16,6 +17,7 @@ class ItemPage extends GetResponsiveView {
       ),
       body: Column(
         children: [
+          //Show Item's image wrapped in Hero tag to allow animation from previous page
           Card(
             child: Hero(
               tag: item.id,
@@ -25,6 +27,7 @@ class ItemPage extends GetResponsiveView {
               ),
             ),
           ),
+          //Spawn 90% width widget to show Item's title
           SizedBox(
             width: 90.w,
             child: Text(
@@ -39,6 +42,7 @@ class ItemPage extends GetResponsiveView {
             ),
           ),
           Divider(),
+          //Spawn 90% width widget to show Item's description
           SizedBox(
             width: 90.w,
             child: Text(item.description),

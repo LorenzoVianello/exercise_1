@@ -9,6 +9,7 @@ class LoginPage extends GetResponsiveView<LoginController> {
   LoginPage({super.key, required this.tag});
 
   @override
+  //Return login page
   Widget phone() {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -19,10 +20,12 @@ class LoginPage extends GetResponsiveView<LoginController> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            //Render assets image on form top
             AspectRatio(
               aspectRatio: 21 / 9,
               child: Image.asset("assets/images/image001.png", scale: 5),
             ),
+            //70% width sized box to contain login Fields
             SizedBox(
               width: 70.w,
               child: Column(
@@ -42,6 +45,7 @@ class LoginPage extends GetResponsiveView<LoginController> {
             Divider(
               color: Colors.transparent,
             ),
+            //Show login button or progress indicatore, if logging in
             Obx(
               () => controller.logging_in.value
                   ? CircularProgressIndicator(

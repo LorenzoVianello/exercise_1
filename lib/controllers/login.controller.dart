@@ -20,13 +20,17 @@ class LoginController extends GetxController {
 
   LoginController({required this.tag});
 
+//Login Function
   void login() async {
-    if (areFieldsValid()) {
+    //Try to login if inputs fields are populated
+    if (areFieldsPopulated()) {
       logging_in.value = true;
+      //Token retrieve
       await Dio()
           .getUri(Uri.parse("https://flutter.dyndns.org/auth.json"))
           .then((result) {
         if (result.statusCode == 200) {
+          //Save login data, clear input fields and render ItemListPage
           dynamic json = jsonDecode(jsonEncode(result.data));
           token.value = json["toekn"] as String;
           logged.value = true;
@@ -44,7 +48,8 @@ class LoginController extends GetxController {
     }
   }
 
-  bool areFieldsValid() {
+  //Return true if fields are populated
+  bool areFieldsPopulated() {
     if (user_username.text.isEmpty) {
       spawnSnackbar(message: "Nessun nome utente fornito!");
       return false;
@@ -56,9 +61,11 @@ class LoginController extends GetxController {
     return true;
   }
 
+  //Spawn error snackbar with custom message
   void spawnSnackbar({required String message}) {
     Get.closeAllSnackbars();
-    Get.snackbar("Errore nel login!", message, icon: Icon(Icons.error));
+    Get.snackbar("Errore nel login!", message,
+        icon: Icon(Icons.error), duration: 3.seconds, isDismissible: true);
   }
 
 //Clear token, set logout and navigate user to LoginPage

@@ -8,6 +8,7 @@ class ItemsListPage extends GetResponsiveView<ItemsController> {
 
   ItemsListPage({super.key, required this.tag});
 
+  //Return phone view
   Widget phone() {
     return Scaffold(
       appBar: AppBar(
@@ -15,6 +16,7 @@ class ItemsListPage extends GetResponsiveView<ItemsController> {
         title: Text("Items"),
         centerTitle: true,
       ),
+      //Render items list or progress indicator, if still fetching
       body: Obx(
         () => controller.fetching.value
             ? Center(
@@ -35,6 +37,7 @@ class ItemsListPage extends GetResponsiveView<ItemsController> {
     );
   }
 
+  //Return ItemList Item widget, with onTap event to render ItemPage
   Widget getItemWidget(Item item) {
     return InkWell(
       onTap: () {
