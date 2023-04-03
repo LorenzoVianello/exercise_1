@@ -2,6 +2,7 @@ import 'package:exercise_1/controllers/items.controller.dart';
 import 'package:exercise_1/controllers/login.controller.dart';
 import 'package:exercise_1/views/login/login.page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:sizer/sizer.dart';
 
@@ -12,6 +13,12 @@ void main() {
 
   Get.put<LoginController>(LoginController(tag: tag), tag: tag);
   Get.put<ItemsController>(ItemsController(tag: tag), tag: tag);
+
+  //Set orientation to vertical only
+  SystemChrome.setPreferredOrientations([
+    DeviceOrientation.portraitUp,
+    DeviceOrientation.portraitDown,
+  ]);
 
   //Run app wrapped in Sizer builder to allow sizer utils use
   runApp(
